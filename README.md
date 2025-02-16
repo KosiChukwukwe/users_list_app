@@ -10,9 +10,9 @@ Riverpod was used for state management
 
 This app also implements a pull-to-refresh functionality and a simple search functionality that filters the list of users based on the name.
 
-```To run the project for the first time, run these: 
+To run the project for the first time, run these: 
 
-- flutter packages pub run build_runner build --delete-conflicting-outputs
+``` flutter packages pub run build_runner build --delete-conflicting-outputs
 
-- flutter pub get
+``` flutter pub get
 
