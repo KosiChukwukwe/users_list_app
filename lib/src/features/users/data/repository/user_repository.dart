@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:technical_assessment/src/features/users/users.dart';
 
@@ -10,7 +11,7 @@ UserRepository userRepository(UserRepositoryRef ref) {
 }
 
 abstract class UserRepository {
-  Future<List<User>> getUsers();
+  Future<List<User>> getUsers(BuildContext context);
 }
 
 class UserRepositoryImpl implements UserRepository {
@@ -19,9 +20,9 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this.userDataSource);
 
   @override
-  Future<List<User>> getUsers() async {
+  Future<List<User>> getUsers(BuildContext context) async {
     try {
-      final users = await userDataSource.getUsers();
+      final users = await userDataSource.getUsers(context);
       return users;
     } catch (e) {
       rethrow;

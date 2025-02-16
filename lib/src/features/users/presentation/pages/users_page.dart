@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:technical_assessment/l10n/l10n.dart';
 import 'package:technical_assessment/src/features/users/users.dart';
 
 class UsersPage extends ConsumerStatefulWidget {
@@ -17,12 +18,16 @@ class _UsersPageState extends ConsumerState<UsersPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-        () => ref.read(userControllerImplProvider.notifier).getUsers());
+    Future.microtask(() async {
+      if (mounted) {
+        ref.read(userControllerImplProvider.notifier).getUsers(context);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     final userState = ref.watch(userControllerImplProvider);
     final userController = ref.watch(userControllerImplProvider.notifier);
 
@@ -47,9 +52,9 @@ class _UsersPageState extends ConsumerState<UsersPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text(
-          "Users",
-          style: TextStyle(
+        title:Text(
+         locale.appTitle,
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,
           ),
@@ -58,7 +63,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
       body: RefreshIndicator(
         color: Colors.black,
         onRefresh: () async {
-          await ref.read(userControllerImplProvider.notifier).getUsers();
+          await ref.read(userControllerImplProvider.notifier).getUsers(context);
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -71,7 +76,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                 child: TextFormField(
                   focusNode: _focusNode,
                   decoration: InputDecoration(
-                    hintText: "Search users by name...",
+                    hintText: locale.searchUsers,
                     prefixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -101,10 +106,10 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                         [];
 
                     if (users.isEmpty) {
-                      return const Center(
+                      return Center(
                         child: Text(
-                          "No users found.",
-                          style: TextStyle(
+                          locale.noUsers,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -121,8 +126,8 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                             bottom: (user == users.last) ? 30.0 : 10.0,
                           ),
                           child: UserWidget(
-                            name: user.name ?? "User",
-                            email: user.email ?? "email",
+                            name: user.name ?? locale.userDemoText,
+                            email: user.email ?? locale.emailDemoText,
                           ),
                         );
                       },

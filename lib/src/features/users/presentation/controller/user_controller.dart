@@ -1,12 +1,13 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:technical_assessment/src/features/users/data/repository/user_repository.dart';
-import 'package:technical_assessment/src/features/users/domain/model/user_model.dart';
+import 'package:technical_assessment/src/features/users/users.dart';
+
 
 part 'user_controller.g.dart';
 
 abstract class UserController {
-  Future<void> getUsers();
+  Future<void> getUsers(BuildContext context);
 }
 
 @Riverpod(keepAlive: true)
@@ -21,11 +22,11 @@ class UserControllerImpl extends _$UserControllerImpl
   String? errorMessage;
 
   @override
-  Future<void> getUsers() async {
+  Future<void> getUsers(BuildContext context) async {
     state = const AsyncValue.loading();
     try {
       final userRepo = ref.read(userRepositoryProvider);
-      users = await userRepo.getUsers();
+      users = await userRepo.getUsers(context);
       errorMessage = null;
       _updateFilteredUsers();
     } catch (e, stackTrace) {

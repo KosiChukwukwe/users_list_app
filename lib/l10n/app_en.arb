@@ -1,0 +1,11 @@
+{
+  "appTitle": "Users",
+  "searchUsers": "Search users by name...",
+  "noUsers": "No users found.",
+  "userDemoText": "User",
+  "emailDemoText": "Email",
+  "serverError": "Server error:",
+  "noInternet": "No Internet connection. Please check your network.",
+  "invalidFormat": "Invalid response format. Please try again later.",
+  "unexpectedError": "An unexpected error occurred:"
+}

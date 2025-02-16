@@ -17,3 +17,4 @@ To run the project for the first time, run these:
  
  flutter pub get
 
+ flutter gen-l10n
