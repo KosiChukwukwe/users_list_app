@@ -7,7 +7,7 @@ part of 'user_controller.dart';
 // **************************************************************************
 
 String _$userControllerImplHash() =>
-    r'ba34b74e325efae8adfc2f8ce3325136d19bd47d';
+    r'553ebe5178d2746d20e566294c8c754cffa0bfd9';
 
 /// See also [UserControllerImpl].
 @ProviderFor(UserControllerImpl)
