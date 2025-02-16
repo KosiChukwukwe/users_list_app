@@ -12,7 +12,8 @@ This app also implements a pull-to-refresh functionality and a simple search fun
 
 To run the project for the first time, run these: 
 
-``` flutter packages pub run build_runner build --delete-conflicting-outputs
-
-``` flutter pub get
+``` 
+ flutter packages pub run build_runner build --delete-conflicting-outputs
+ 
+ flutter pub get
 
